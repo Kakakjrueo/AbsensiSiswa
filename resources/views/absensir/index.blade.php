@@ -45,7 +45,7 @@
         @endif
 
         <div class="table-responsive">
-            <table id="example" class="table table-striped" style="width:100%">
+            <table class="table table-striped" id="example" >
                 <thead>
                     <tr>
                         <th>No</th>
@@ -59,8 +59,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if ($absensirs->count() > 0)
-                        @foreach ($absensirs as $absensir)
+                    @forelse ($absensirs as $absensir)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $absensir->user->name }}</td>
@@ -87,12 +86,8 @@
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="5" class="text-center">Data Kosong</td>
-                        </tr>    
-                    @endif
+                    @empty   
+                    @endforelse
                 </tbody>
             </table>
         </div>

@@ -20,6 +20,10 @@
 			paging: false,
 			lengthChange: false,
 
+			language: {
+				emptyTable: "Data Kosong"
+			},
+
 			columnDefs: [{
 				targets: -1,
 				className: 'noExport'

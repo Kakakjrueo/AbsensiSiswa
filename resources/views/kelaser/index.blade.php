@@ -36,8 +36,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if ($kelasers->count() > 0)
-                        @foreach ($kelasers as $kelaser)
+                    @forelse ($kelasers as $kelaser)
                             <tr>
                                 <td> {{ $loop->iteration }}</td>
                                 <td>
@@ -53,14 +52,8 @@
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="5" class="text-center">Data Kosong
-                            </td>
-                        </tr>
-                    @endif
-
+                    @empty    
+                    @endforelse 
                 </tbody>
             </table>
         </div>

@@ -31,16 +31,23 @@ class FilterController extends Controller
 
     public function FilterRekap(Request $request)
     {
-        $kelasers = Kelaser::all();
-        $kelaser_id = $request->kelaser_id;
-        $mulai = $request->mulai;
-        $akhir = $request->akhir;
+    $request->validate([
+        'kelaser_id' => 'required',
+        'mulai' => 'required',
+        'akhir' => 'required',
+    ]);
 
-        $absensirs = Absensir::where('kelaser_id', $kelaser_id)
-                        ->whereBetween('created_at', [$mulai, $akhir])
-                        ->get();
+    $kelaser_id = $request->kelaser_id;
+    $mulai = $request->mulai;
+    $akhir = $request->akhir;
 
-        return view('absensir.index', compact('absensirs','kelasers'));
+    $absensirs = Absensir::where('kelaser_id', $kelaser_id)
+                         ->whereDate('created_at', '>=', $mulai)
+                         ->whereDate('created_at', '<=', $akhir)
+                         ->get();
+    $kelasers = Kelaser::all();
+ 
+    return view('absensir.index', compact('absensirs','kelasers'));
     }
 
 }

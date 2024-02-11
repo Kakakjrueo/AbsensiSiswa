@@ -55,8 +55,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if ($siswars->count() > 0)
-                        @foreach ($siswars as $siswar)
+                    @forelse ($siswars as $siswar)
                             <tr>
                                 <td> {{ $loop->iteration }}</td>
                                 <td> {{ $siswar->nis }}</td>
@@ -74,16 +73,10 @@
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
-                    @else
-                        <tr>
-                            <td colspan="5" class="text-center">Data Kosong
-                            </td>
-                        </tr>
-                    @endif
+                     @empty 
+                    @endforelse    
                 </tbody>
             </table>
         </div>
-
     </div>
 @endsection

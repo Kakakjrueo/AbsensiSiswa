@@ -1,13 +1,10 @@
 <?php
 use App\Http\Controllers\AbsensirController;
 use App\Http\Controllers\FilterController;
-use App\Http\Controllers\HakAksesController;
 use App\Http\Controllers\KelaserController;
-use App\Http\Controllers\SecondController;
 use App\Http\Controllers\SesiController;
 use App\Http\Controllers\SiswarController;
 use App\Http\Controllers\UserController;
-use App\Models\Absensir;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest'])->group(function(){

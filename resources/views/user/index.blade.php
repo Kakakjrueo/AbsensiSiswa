@@ -35,8 +35,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($users->count() > 0)
-                            @foreach ($users as $user)
+                        @forelse ($users as $user)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $user->name }}</td>
@@ -53,12 +52,8 @@
                                         </form>
                                     </td>
                                 </tr>
-                            @endforeach
-                        @else
-                            <tr>
-                                <td colspan="5" class="text-center">Data Kosong</td>
-                            </tr>
-                        @endif
+                        @empty    
+                        @endforelse
                     </tbody>
                 </table>
             </div>
