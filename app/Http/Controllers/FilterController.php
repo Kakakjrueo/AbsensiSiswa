@@ -29,14 +29,18 @@ class FilterController extends Controller
         return view('absensir.create', compact('siswars', 'kelasers'));
     }
 
-    public function OrderById(Request $request)
+    public function FilterRekap(Request $request)
     {
-        $kelasId = $request->input('kelaser_id');
-    
-        $absensirs = Absensir::where('kelaser_id', $kelasId)->get();
         $kelasers = Kelaser::all();
-    
-        return view('absensir.index', compact('absensirs', 'kelasers'));
+        $kelaser_id = $request->kelaser_id;
+        $mulai = $request->mulai;
+        $akhir = $request->akhir;
+
+        $absensirs = Absensir::where('kelaser_id', $kelaser_id)
+                        ->whereBetween('created_at', [$mulai, $akhir])
+                        ->get();
+
+        return view('absensir.index', compact('absensirs','kelasers'));
     }
 
 }

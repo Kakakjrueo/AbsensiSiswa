@@ -11,7 +11,7 @@ class AbsensirController extends Controller
 {
     public function index()
     {
-        $absensirs = Absensir::all();
+        $absensirs = Absensir::orderBy('created_at','desc')->get();
         $siswars = Siswar::all();
         $kelasers = Kelaser::all();
 
@@ -79,5 +79,11 @@ class AbsensirController extends Controller
         $absensir->delete();
 
         return redirect()->route('absensir.index')->with(['success'=> 'Absensi siswa berhasil hapus']);
+    }
+
+    public function AbsenKelas()
+    {
+        $kelasers = Kelaser::all();
+        return view('absensir.absenkelas',compact('kelasers'));
     }
 }

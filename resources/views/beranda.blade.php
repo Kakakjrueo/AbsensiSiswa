@@ -1,29 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('component.utama')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Beranda - Aplikasi Absensi Siswa </title>
+@section('title')
+    Dashboard
+@endsection
 
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/chartjs/Chart.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
-    <link rel="shortcut icon" href="{{ asset('assets/images/LogoCN.png') }}" type="image/x-icon">
-</head>
+@section('penanda')
+    Dashboard 
+@endsection
 
-<body>
-    <div id="app">
-        @include('include.sidebar')
-        <div id="main" class="main d-flex flex-column">
-            @include('include.navbar')
-            <div class="main-content container-fluid mb-auto">
-                <div class="page-title">
-                    <h3>Dashboard</h3>
-                </div>
-                <section class="section">
-                    <div class="row mb-2">
+@section('content')
                         <div class="col col-md-3">
                             <div class="card card-statistic">
                                 <div class="card-body p-0">
@@ -80,11 +65,4 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </section>
-            </div>
-            @include('include.footer')
-        </div>
-
-    </div>
-    @include('include.script')
+@endsection

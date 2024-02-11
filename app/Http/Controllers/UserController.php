@@ -31,11 +31,11 @@ class UserController extends Controller
         User::create([
             'name'=> $request->name,
             'email'=>$request->email,
-            'role'=>$request->role,
             'password'=>bcrypt($request->password),
+            'role'=>$request->role,
             'mapel' => $request->mapel
         ]);
-        return redirect()->route('user.index')->with('success', 'Data user berhasil ditambah');
+        return redirect()->route('user.index')->with(['success' => 'Data user berhasil ditambah']);
     }
 
     public function edit(string $id)
@@ -64,7 +64,7 @@ class UserController extends Controller
             'mapel' => $request->mapel
         ]);
 
-        return redirect()->route('user.index')->with('success', 'Data user telah diubah');
+        return redirect()->route('user.index')->with(['success' => 'Data user telah diubah']);
     }
 
     public function destroy(string $id)
@@ -72,6 +72,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route('user.index')->with('success', 'Data user telah dihapus');
+        return redirect()->route('user.index')->with(['success' => 'Data user telah dihapus']);
     }
 }

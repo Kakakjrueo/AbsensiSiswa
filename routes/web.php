@@ -7,6 +7,7 @@ use App\Http\Controllers\SecondController;
 use App\Http\Controllers\SesiController;
 use App\Http\Controllers\SiswarController;
 use App\Http\Controllers\UserController;
+use App\Models\Absensir;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['guest'])->group(function(){
@@ -19,7 +20,7 @@ Route::get('/home', function(){
 });
 
 Route::middleware(['auth'])->group(function(){
-    Route::get('/beranda', [HakAksesController::class, 'index']);
+    Route::get('/beranda', [SesiController::class, 'beranda']);
     Route::get('/logout',  [SesiController::class, 'logout']);
 
     Route::resource('/user', UserController::class)->middleware('level:admin');
@@ -27,12 +28,12 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('/siswar', SiswarController::class)->middleware('level:admin');
  
     Route::resource('/absensir', AbsensirController::class);
-    Route::post('/filter',[SecondController::class,'filter']);
     Route::post('/filterByKelas', [FilterController::class, 'filterByKelas']);
     Route::post('/PilihKelas', [FilterController::class, 'PilihKelas']);
-    Route::post('/OrderById', [FilterController::class, 'OrderById']);
+    Route::post('/FilterRekap',[FilterController::class, 'FilterRekap']);
 
     Route::middleware(['auth', 'level:admin,guru'])->group(function(){ 
-        Route::get('/AbsenKelas',[SecondController::class,'AbsenKelas']);
+        Route::get('/AbsenKelas',[AbsensirController::class,'AbsenKelas']);
+        Route::get('/absensir/create',[AbsensirController::class,'create']);
     });
 });

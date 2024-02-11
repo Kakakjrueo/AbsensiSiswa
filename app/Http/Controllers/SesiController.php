@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Absensir;
+use App\Models\Kelaser;
+use App\Models\Siswar;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,16 +19,16 @@ class SesiController extends Controller
     function login(Request $request)
     {
         $request->validate([
-            'email'=>'required',
+            'name'=>'required',
             'password'=>'required'
         ],[
-            'email.required'=>'email harus diisi',
+            'name.required'=>'Username harus diisi',
             'password.required'=>'password harus diisi'
         ]
     );
     
         $info = [
-            'email'=>$request->email,
+            'name'=>$request->name,
             'password'=>$request->password,
         ];
 
@@ -45,5 +49,14 @@ class SesiController extends Controller
     {
         Auth::logout();
         return redirect('');
+    }
+
+    function beranda()
+    {
+        $user = User::count();
+        $kelas = Kelaser::count();
+        $siswa = Siswar::count();
+        $absensi = Absensir::count();
+        return view('beranda',compact('user','kelas','siswa','absensi'));
     }
 }

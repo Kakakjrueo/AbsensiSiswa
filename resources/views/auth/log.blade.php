@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Absensi</title>
-    <link rel="stylesheet" href="assets/css/bootstrap.css">
-    <link rel="shortcut icon" href="/assets/images/LogoCN.png" type="image/x-icon">
-    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/LogoCN.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
 </head>
 
 <body>
@@ -31,9 +31,9 @@
                         @endif
 
                         <div class="form-group position-relative has-icon-left">
-                            <label for="email">Email</label>
+                            <label for="email">Username</label>
                             <div class="position-relative">
-                                <input type="email" class="form-control" id="email" name="email">
+                                <input type="text" class="form-control" id="email" name="name">
                                 <div class="form-control-icon">
                                     <i data-feather="user"></i>
                                 </div>
@@ -58,9 +58,9 @@
             </div>
         </div>
     </div>
-    <script src="assets/js/feather-icons/feather.min.js"></script>
-    <script src="assets/js/app.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="{{ asset('assets/js/feather-icons/feather.min.js') }}"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 
 </html>
