@@ -14,8 +14,9 @@ class AbsensirController extends Controller
         $absensirs = Absensir::orderBy('created_at','desc')->get();
         $siswars = Siswar::all();
         $kelasers = Kelaser::all();
+        $users = User::all();
 
-        return view('absensir.index',compact('absensirs','siswars','kelasers')); 
+        return view('absensir.index',compact('absensirs','siswars','kelasers','users')); 
     }
 
     public function create()

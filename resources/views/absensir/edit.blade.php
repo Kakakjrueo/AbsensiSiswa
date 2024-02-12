@@ -23,12 +23,14 @@
                             <label for="">Keterangan</label>
                             <select name="keterangan" class="choices form-select">
                                 @foreach (['hadir', 'sakit', 'izin', 'alpa'] as $option)
-                                    <option value="{{ $option }}"
-                                        {{ $absensir->keterangan == $option ? 'selected' : '' }}>
+                                    <option value="{{ $option }}" {{ old('keterangan', $absensir->keterangan) == $option ? 'selected' : '' }}>
                                         {{ ucfirst($option) }}
                                     </option>
                                 @endforeach
                             </select>
+                            @error('keterangan')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col">
@@ -36,11 +38,14 @@
                             <label for="">Guru Pengajar</label>
                             <select name="user_id" class="choices form-select">
                                 @foreach ($users as $user)
-                                    <option value="{{ $user->id }}" @if ($absensir->user_id == $user->id) selected @endif>
+                                    <option value="{{ $user->id }}" {{ old('user_id', $absensir->user_id) == $user->id ? 'selected' : '' }}>
                                         {{ $user->name }}
                                     </option>
                                 @endforeach
                             </select>
+                            @error('user_id')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 

@@ -14,33 +14,50 @@
             <form action="/FilterRekap" method="post">
                 @csrf
                 <div class="row pb-3">
-                    <div class="col-md-3">
-                        <label for="country-floating">Pilih Kelas</label>
-                        <select class="form-control" name="kelaser_id">
-                            @foreach ($kelasers as $kelaser)
-                                <option value="{{ $kelaser->id }}">{{ $kelaser->namlas }}
+                    <div class="col-md-2">
+                        <label for="country-floating">Guru Pengajar</label>
+                        <select class="form-select" name="user_id">
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}"{{ session('user_id') == $user->id ? 'selected' : '' }}>
+                                    {{ $user->name }}
                                 </option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-3" >
+                    <div class="col-md-2">
+                        <label for="country-floating">Pilih Kelas</label>
+                        <select class="form-select" name="kelaser_id">
+                            @foreach ($kelasers as $kelaser)
+                                <option value="{{ $kelaser->id }}"{{ session('kelaser_id') == $kelaser->id ? 'selected' : '' }}>
+                                    {{ $kelaser->namlas }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-2">
                         <label>Mulai</label>
-                        <input type="date" name="mulai" class="form-control">
+                        <input type="date" name="mulai" class="form-control" value="{{ old('mulai') ?: request()->input('mulai') }}">
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label>Akhir</label>
-                        <input type="date" name="akhir" class="form-control">
+                        <input type="date" name="akhir" class="form-control" value="{{ old('akhir') ?: request()->input('akhir') }}">
                     </div>
-                    <div class="col-md-3 pt-4">
-                        <button type="submit" class="btn btn-primary">Tampilkan</button>
+                    <div class="col-md-2 d-grid">
+                        <button type="submit" class="btn btn-primary mt-4 btn-sm">Tampilkan</button>
                     </div>
                 </div>
             </form>
+             
         </div>
 
         @if (Session::has('success'))
             <div class="alert alert-success" role="alert">
                 {{ Session::get('success') }}
+            </div>
+        @endif
+        @if (Session::has('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ Session::get('error') }}
             </div>
         @endif
 

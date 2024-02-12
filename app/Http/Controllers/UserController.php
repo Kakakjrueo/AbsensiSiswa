@@ -21,13 +21,13 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'=>'required',
-            'email' => 'required',
-            'password'=> 'required',
+            'name' => 'required|unique:users',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
             'role' => 'required',
             'mapel' => 'required',
         ]);
-
+        
         User::create([
             'name'=> $request->name,
             'email'=>$request->email,
@@ -45,33 +45,42 @@ class UserController extends Controller
     }
 
     public function update(Request $request, string $id)
-    {
-        $this->validate($request, [
-            'name'=>'required',
-            'email' => 'required',
-            'password'=> 'required',
-            'role' => 'required',
-            'mapel' => 'required',
-        ]);
+{
+    $user = User::findOrFail($id);
 
-        $user = User::findOrFail($id);
+    $this->validate($request, [
+        'name' => 'required|unique:users,name,' . $user->id,
+        'email' => 'required|email|unique:users,email,' . $user->id,
+        'role' => 'required',
+        'mapel' => 'required',
+    ]);
 
-        $user->update([
-            'name'=> $request->name,
-            'email'=>$request->email,
-            'role'=>$request->role,
-            'password'=>bcrypt($request->password),
-            'mapel' => $request->mapel
-        ]);
+    $data = [
+        'name' => $request->name,
+        'email' => $request->email,
+        'role' => $request->role,
+        'mapel' => $request->mapel
+    ];
 
-        return redirect()->route('user.index')->with(['success' => 'Data user telah diubah']);
+    if ($request->filled('password')) {
+        $data['password'] = bcrypt($request->password);
     }
 
-    public function destroy(string $id)
-    {
+    $user->update($data);
+
+    return redirect()->route('user.index')->with(['success' => 'Data user telah diubah']);
+}
+
+public function destroy(string $id)
+{
+    try {
         $user = User::findOrFail($id);
         $user->delete();
-
         return redirect()->route('user.index')->with(['success' => 'Data user telah dihapus']);
+    } catch (\Exception $e) {
+        
+        return redirect()->route('user.index')->with(['error' => 'Gagal menghapus user tersebut karena ada data yang terkait dengan table absensi.']);
     }
+}
+
 }

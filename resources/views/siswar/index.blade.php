@@ -16,30 +16,37 @@
     <div class="card">
         <form action="/filterByKelas" method="post">
             @csrf
-            <div class="col-md-6 ">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label for="country-floating">Pilih Kelas</label>
-                    <div class="d-flex gap-2">
-                        <select class="form-control" name="kelaser_id">
-                            @foreach ($kelasers as $kelaser)
-                                <option value="{{ $kelaser->id }}">{{ $kelaser->namlas }}</option>
-                            @endforeach
-                        </select>
-                        <button type="submit" class="btn btn-primary">Tampilkan</button>
+                    <div class="row gap-2">
+                        <div class="col-md">
+                            <select class="form-select " name="kelaser_id">
+                                @foreach ($kelasers as $kelaser)
+                                    <option value="{{ $kelaser->id }}"{{ session('kelaser_id') == $kelaser->id ? 'selected' : '' }}>
+                                        {{ $kelaser->namlas }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md d-grid">
+                            <button type="submit" class="btn btn-primary">Tampilkan</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </form>
-
-        <div class="card-header">
 
             @if (Session::has('success'))
                 <div class="alert alert-success" role="alert">
                     {{ Session::get('success') }}
                 </div>
             @endif
-        </div>
-
+            @if (Session::has('error'))
+            <div class="alert alert-danger" role="alert">
+                {{ Session::get('error') }}
+            </div>
+        @endif
 
         <div class="table-responsive">
             <table class='table table-striped' id="example">

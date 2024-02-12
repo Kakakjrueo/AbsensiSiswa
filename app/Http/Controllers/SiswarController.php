@@ -27,9 +27,9 @@ class SiswarController extends Controller
         $this->validate($request, [
             'nama'=>'required',
             'jenkel'=>'required',
-            'nis'=>'required',
+            'nis'=>'required|digit:9',
             'kelaser_id'=>'required',
-            'nisn'=>'required',
+            'nisn'=>'required|digit:10',
         ]);
 
         Siswar::create([
@@ -57,7 +57,8 @@ class SiswarController extends Controller
         $this->validate($request, [
             'nama'=>'required',
             'jenkel'=>'required',
-            'nis'=>'required',
+            'nis'=>'required|digit:9',
+            'nisn'=>'required|digit:10',
             'kelaser_id'=>'required'
         ]);
 
@@ -67,6 +68,7 @@ class SiswarController extends Controller
             'nama'=>$request->nama,
             'jenkel'=>$request->jenkel,
             'nis'=>$request->nis,
+            'nisn'=> $request->nisn,
             'kelaser_id'=>$request->kelaser_id
         ]);
 
@@ -75,10 +77,12 @@ class SiswarController extends Controller
 
     public function destroy(string $id)
     {
-        $siswar = Siswar::findOrFail($id);
-
-        $siswar->delete();
-
-        return redirect()->route('siswar.index')->with(['success'=> 'Data siswa berhasil diapus']);
+        try {
+            $siswar = Siswar::findOrFail($id);
+            $siswar->delete();
+            return redirect()->route('siswar.index')->with(['success' => 'Data user telah dihapus']);
+        } catch (\Exception $e) {
+            return redirect()->route('siswar.index')->with(['error' => 'Gagal menghapus siswa tersebut karena ada data yang terkait dengan table absensi.']);
+        }
     }
 }

@@ -21,15 +21,19 @@
                     <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="first-name-column">Nama Siswa</label>
-                            <input type="text" name="nama" class="form-control" placeholder="Nama Siswa"
-                                value="{{ $siswar->nama }}">
+                            <input type="text" name="nama" class="form-control" placeholder="Nama Siswa" value="{{ old('nama', $siswar->nama) }}">
+                            @error('nama')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="last-name-column">Nis</label>
-                            <input type="number" class="form-control" placeholder="nis" name="nis"
-                                value="{{ $siswar->nis }}">
+                            <input type="number" class="form-control" placeholder="nis" name="nis" value="{{ old('nis', $siswar->nis) }}">
+                            @error('nis')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6 col-12">
@@ -37,33 +41,38 @@
                             <label for="country-floating">Jenis Kelamin</label>
                             <select class="form-select" name="jenkel">
                                 @foreach (['L', 'P'] as $option)
-                                    <option value="{{ $option }}" {{ $siswar->jenkel == $option ? 'selected' : '' }}>
+                                    <option value="{{ $option }}" {{ old('jenkel', $siswar->jenkel) == $option ? 'selected' : '' }}>
                                         {{ ucfirst($option) }}
                                     </option>
                                 @endforeach
                             </select>
+                            @error('jenkel')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="country-floating">Kelas</label>
                             <select class="form-select" name="kelaser_id">
-
                                 @foreach ($kelasers as $kelas)
-                                    <option value="{{ $kelas->id }}" @if ($siswar->kelaser_id == $kelas->id) selected @endif>
+                                    <option value="{{ $kelas->id }}" @if (old('kelaser_id', $siswar->kelaser_id) == $kelas->id) selected @endif>
                                         {{ $kelas->namlas }}
                                     </option>
                                 @endforeach
-
                             </select>
-
+                            @error('kelaser_id')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-md col-12">
                         <div class="form-group">
                             <label for="first-name-column">Nisn</label>
-                            <input type="number" name="nisn" class="form-control" placeholder="Nisn"
-                                value="{{ $siswar->nisn }}">
+                            <input type="number" name="nisn" class="form-control" placeholder="Nisn" value="{{ old('nisn', $siswar->nisn) }}">
+                            @error('nisn')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="col-12 d-flex justify-content-end">
