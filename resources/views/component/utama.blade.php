@@ -17,7 +17,7 @@
     @include('component.style')
 </head>
 
-<body>
+<body >
     <div id="app">
         @include('component.sidebar')
         <div id="main" class="main d-flex flex-column">
@@ -39,3 +39,25 @@
 
     </div>
     @include('component.script')
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
+        role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalCenterTitle">Logout</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Yakin mau logout?</p>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="/logout" type="button" class="btn btn-primary">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

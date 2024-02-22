@@ -13,7 +13,7 @@
         <a href="{{ route('siswar.create') }}" class="btn icon icon-left btn-primary">Tambah
             Data</a>
     </div>
-    <div class="card">
+    <div class="card pt-2">
         <form action="/filterByKelas" method="post">
             @csrf
             <div class="col-md-6">
@@ -21,7 +21,7 @@
                     <label for="country-floating">Pilih Kelas</label>
                     <div class="row gap-2">
                         <div class="col-md">
-                            <select class="form-select " name="kelaser_id">
+                            <select class="form-select" name="kelaser_id">
                                 @foreach ($kelasers as $kelaser)
                                     <option value="{{ $kelaser->id }}"{{ session('kelaser_id') == $kelaser->id ? 'selected' : '' }}>
                                         {{ $kelaser->namlas }}
@@ -29,7 +29,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md d-grid">
+                        <div class="col-md-2 d-grid">
                             <button type="submit" class="btn btn-primary">Tampilkan</button>
                         </div>
                     </div>
@@ -47,43 +47,45 @@
                 {{ Session::get('error') }}
             </div>
         @endif
-
-        <div class="table-responsive">
-            <table class='table table-striped' id="example">
-                <thead>
-                    <tr>
-                        <th>no</th>
-                        <th>Nis</th>
-                        <th>Nisn</th>
-                        <th>Nama Siswa</th>
-                        <th>Jenis Kelamin</th>
-                        <th>Kelas</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($siswars as $siswar)
-                            <tr>
-                                <td> {{ $loop->iteration }}</td>
-                                <td> {{ $siswar->nis }}</td>
-                                <td> {{ $siswar->nisn }}</td>
-                                <td> {{ $siswar->nama }}</td>
-                                <td> {{ $siswar->jenkel }} </td>
-                                <td> {{ $siswar->kelaser->namlas }}</td>
-                                <td>
-                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                        action="{{ route('siswar.destroy', $siswar->id) }}" method="POST">
-                                        <a href="{{ route('siswar.edit', $siswar->id) }}" class="btn btn-primary">Edit</a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                    </form>
-                                </td>
-                            </tr>
-                     @empty 
-                    @endforelse    
-                </tbody>
-            </table>
+        
+        <div class="card-body px-0 py-0">
+            <div class="table-responsive">
+                <table class='table table-striped' id="example">
+                    <thead>
+                        <tr>
+                            <th>no</th>
+                            <th>Nis</th>
+                            <th>Nisn</th>
+                            <th>Nama Siswa</th>
+                            <th>Jenis Kelamin</th>
+                            <th>Kelas</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($siswars as $siswar)
+                                <tr>
+                                    <td> {{ $loop->iteration }}</td>
+                                    <td> {{ $siswar->nis }}</td>
+                                    <td> {{ $siswar->nisn }}</td>
+                                    <td> {{ $siswar->nama }}</td>
+                                    <td> {{ $siswar->jenkel }} </td>
+                                    <td> {{ $siswar->kelaser->namlas }}</td>
+                                    <td>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                            action="{{ route('siswar.destroy', $siswar->id) }}" method="POST">
+                                            <a href="{{ route('siswar.edit', $siswar->id) }}" class="btn btn-primary">Edit</a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                        @empty 
+                        @endforelse    
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @endsection

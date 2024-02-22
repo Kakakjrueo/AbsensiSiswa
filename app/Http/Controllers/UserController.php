@@ -26,6 +26,9 @@ class UserController extends Controller
             'password' => 'required',
             'role' => 'required',
             'mapel' => 'required',
+        ], [
+            'name.unique' => 'username sudah digunakan.',
+            'email.unique' => 'email sudah digunakan.',
         ]);
         
         User::create([

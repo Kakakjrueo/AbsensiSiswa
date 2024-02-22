@@ -29,7 +29,7 @@
                     <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="last-name-column">Nis</label>
-                            <input type="number" class="form-control" placeholder="Masukkan Nis" name="nis" value="{{ old('nis') }}">
+                            <input type="text" class="form-control" placeholder="Masukkan Nis" name="nis" value="{{ old('nis') }}">
                             @error('nis')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -50,7 +50,7 @@
                     <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="country-floating">Kelas</label>
-                            <select class="form-control" name="kelaser_id">
+                            <select class="form-select" name="kelaser_id">
                                 @foreach ($kelasers as $kelaser)
                                     <option value="{{ $kelaser->id }}" {{ old('kelaser_id') == $kelaser->id ? 'selected' : '' }}>{{ $kelaser->namlas }}</option>
                                 @endforeach
@@ -63,7 +63,7 @@
                     <div class="col-md col-12">
                         <div class="form-group">
                             <label for="first-name-column">Nisn</label>
-                            <input type="number" name="nisn" class="form-control" placeholder="Masukkan Nisn" value="{{ old('nisn') }}">
+                            <input type="text" name="nisn" class="form-control" placeholder="Masukkan Nisn" value="{{ old('nisn') }}">
                             @error('nisn')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

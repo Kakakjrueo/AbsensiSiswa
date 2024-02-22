@@ -27,9 +27,16 @@ class SiswarController extends Controller
         $this->validate($request, [
             'nama'=>'required',
             'jenkel'=>'required',
-            'nis'=>'required|digit:9',
+            'nis'=>'required|numeric|digits:9|unique:siswars',
             'kelaser_id'=>'required',
-            'nisn'=>'required|digit:10',
+            'nisn'=>'required|numeric|digits:10|unique:siswars',
+        ], [
+            'nis.numeric' => 'NIS harus berupa angka.',
+            'nis.digits' => 'NIS harus terdiri dari 9 digit.',
+            'nis.unique' => 'NIS sudah digunakan.',
+            'nisn.numeric' => 'NISN harus berupa angka.',
+            'nisn.digits' => 'NISN harus terdiri dari 10 digit.',
+            'nisn.unique' => 'NISN sudah digunakan.',
         ]);
 
         Siswar::create([
@@ -57,9 +64,16 @@ class SiswarController extends Controller
         $this->validate($request, [
             'nama'=>'required',
             'jenkel'=>'required',
-            'nis'=>'required|digit:9',
-            'nisn'=>'required|digit:10',
-            'kelaser_id'=>'required'
+            'nis'=>'required|numeric|digits:9|unique:siswars',
+            'kelaser_id'=>'required',
+            'nisn'=>'required|numeric|digits:10|unique:siswars',
+        ], [
+            'nis.numeric' => 'NIS harus berupa angka.',
+            'nis.digits' => 'NIS harus terdiri dari 9 digit.',
+            'nis.unique' => 'NIS sudah digunakan.',
+            'nisn.numeric' => 'NISN harus berupa angka.',
+            'nisn.digits' => 'NISN harus terdiri dari 10 digit.',
+            'nisn.unique' => 'NISN sudah digunakan.',
         ]);
 
         $siswar = Siswar::findOrFail($id);

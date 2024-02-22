@@ -6,6 +6,7 @@ use App\Models\Absensir;
 use App\Models\Kelaser;
 use App\Models\Siswar;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -56,7 +57,8 @@ class SesiController extends Controller
         $user = User::count();
         $kelas = Kelaser::count();
         $siswa = Siswar::count();
-        $absensi = Absensir::count();
+        $today = Carbon::today();
+        $absensi = Absensir::whereDate('created_at', $today)->count();
         return view('beranda',compact('user','kelas','siswa','absensi'));
     }
 }

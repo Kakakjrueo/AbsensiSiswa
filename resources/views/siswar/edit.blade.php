@@ -30,7 +30,7 @@
                     <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="last-name-column">Nis</label>
-                            <input type="number" class="form-control" placeholder="nis" name="nis" value="{{ old('nis', $siswar->nis) }}">
+                            <input type="text" class="form-control" placeholder="nis" name="nis" value="{{ old('nis', $siswar->nis) }}">
                             @error('nis')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
@@ -69,7 +69,7 @@
                     <div class="col-md col-12">
                         <div class="form-group">
                             <label for="first-name-column">Nisn</label>
-                            <input type="number" name="nisn" class="form-control" placeholder="Nisn" value="{{ old('nisn', $siswar->nisn) }}">
+                            <input type="text" name="nisn" class="form-control" placeholder="Nisn" value="{{ old('nisn', $siswar->nisn) }}">
                             @error('nisn')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

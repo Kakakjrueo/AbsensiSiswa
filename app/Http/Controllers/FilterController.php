@@ -34,7 +34,6 @@ class FilterController extends Controller
     public function FilterRekap(Request $request)
     {
     $request->validate([
-        'kelaser_id' => 'required',
         'mulai' => 'required',
         'akhir' => 'required',
     ]);

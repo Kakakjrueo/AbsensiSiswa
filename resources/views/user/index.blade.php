@@ -12,26 +12,26 @@
     <div class="col-12 col-md-3 mb-2">
         <a href="{{ route('user.create') }}" class="btn icon icon-left btn-primary">Tambah Data</a>
     </div>
-    <div class="card">
-        <div class="card-header">
-            @if (Session::has('success'))
-                <div class="alert alert-success" role="alert">
-                    {{ Session::get('success') }}
-                </div>
-            @endif
-            @if (Session::has('error'))
+    <div class="card pt-2">
+       
+        @if (Session::has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ Session::get('success') }}
+        </div>
+        @endif
+        @if (Session::has('error'))
             <div class="alert alert-danger" role="alert">
                 {{ Session::get('error') }}
             </div>
         @endif
-        </div>
-        <div class="card-body">
+        
+        <div class="card-body px-0 py-0">
             <div class="table-responsive">
-                <table class='table table-striped' id="example">
+                <table class="table" id="example">
                     <thead>
                         <tr>
                             <th>no</th>
-                            <th>Name</th>
+                            <th>Username</th>
                             <th>Email</th>
                             <th>Role</th>
                             <th>Mapel</th>

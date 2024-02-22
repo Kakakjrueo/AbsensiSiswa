@@ -9,8 +9,7 @@
 @endsection
 
 @section('content')
-    <div class="card">
-        <div class="mb-2">
+    <div class="card pt-2">
             <form action="/FilterRekap" method="post">
                 @csrf
                 <div class="row pb-3">
@@ -47,8 +46,6 @@
                     </div>
                 </div>
             </form>
-             
-        </div>
 
         @if (Session::has('success'))
             <div class="alert alert-success" role="alert">
@@ -61,52 +58,54 @@
             </div>
         @endif
 
-        <div class="table-responsive">
-            <table class="table table-striped" id="example" >
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Guru</th>
-                        <th>Mapel</th>
-                        <th>Nama Siswa</th>
-                        <th>Keterangan</th>
-                        <th>Kelas</th>
-                        <th>Tanggal Absensi</th>
-                        <th>aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($absensirs as $absensir)
-                            <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $absensir->user->name }}</td>
-                                <td>{{ $absensir->user->mapel }}</td>
-                                <td>{{ $absensir->siswar->nama }}</td>
-                                <td>{{ $absensir->keterangan }}</td>
-                                <td>{{ $absensir->kelaser->namlas }}</td>
+        <div class="card-body px-0 py-0">
+            <div class="table-responsive">
+                <table class="table table-striped" id="example" >
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Guru</th>
+                            <th>Mapel</th>
+                            <th>Nama Siswa</th>
+                            <th>Keterangan</th>
+                            <th>Kelas</th>
+                            <th>Tanggal Absensi</th>
+                            <th>aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($absensirs as $absensir)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $absensir->user->name }}</td>
+                                    <td>{{ $absensir->user->mapel }}</td>
+                                    <td>{{ $absensir->siswar->nama }}</td>
+                                    <td>{{ $absensir->keterangan }}</td>
+                                    <td>{{ $absensir->kelaser->namlas }}</td>
 
-                                <td>
-                                    @if ($absensir->created_at)
-                                        {{ $absensir->created_at->format('d-F-Y') }}
-                                    @else
-                                        Tidak ada tanggal
-                                    @endif
-                                </td>
-                                <td>
-                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');"
-                                        action="{{ route('absensir.destroy', $absensir->id) }}" method="POST">
-                                        <a href="{{ route('absensir.edit', $absensir->id) }}"
-                                            class="btn btn-primary">Edit</a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                    </form>
-                                </td>
-                            </tr>
-                    @empty   
-                    @endforelse
-                </tbody>
-            </table>
+                                    <td>
+                                        @if ($absensir->created_at)
+                                            {{ $absensir->created_at->format('d-F-Y') }}
+                                        @else
+                                            Tidak ada tanggal
+                                        @endif
+                                    </td>
+                                    <td>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');"
+                                            action="{{ route('absensir.destroy', $absensir->id) }}" method="POST">
+                                            <a href="{{ route('absensir.edit', $absensir->id) }}"
+                                                class="btn btn-primary">Edit</a>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                        @empty   
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 @endsection
