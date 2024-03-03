@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('absensirs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('siswar_id')->references('id')->on('siswars');
+            $table->foreignId('siswar_id')->references('id')->on('siswars')->onDelete('cascade');
             $table->enum('keterangan',['hadir','sakit','izin','alpa'])->nullable();
-            $table->foreignId('kelaser_id')->references('id')->on('kelasers');
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('kelaser_id')->references('id')->on('kelasers')->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

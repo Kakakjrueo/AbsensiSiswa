@@ -20,7 +20,7 @@
           <div class="col">
             <div class="form-group">
               <label for="first-name-column">Kelas</label>
-              <input type="text" name="namlas" class="form-control" value="{{ old('namlas') }}">
+              <input type="text" name="namlas" class="form-control" value="{{ old('namlas') }}" placeholder="Tambahkan Kelas">
               @error('namlas')
                 <div class="text-danger">{{ $message }}</div>
               @enderror

@@ -53,12 +53,8 @@ class KelaserController extends Controller
 
     public function destroy(string $id)
     {
-        try {
             $kelaser = Kelaser::findOrFail($id);
             $kelaser->delete();
             return redirect()->route('kelaser.index')->with(['success' => 'Data user telah dihapus']);
-        } catch (\Exception $e) {
-            return redirect()->route('kelaser.index')->with(['error' => 'Gagal menghapus kelas tersebut karena ada data yang terkait dengan table siswa.']);
-        }
     }
 }

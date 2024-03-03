@@ -51,7 +51,7 @@
                             </div>
                         </div>
                         <div class="clearfix justify-content-center d-flex">
-                            <button class="btn btn-primary">Submit</button>
+                            <button class="btn btn-dark">Login</button>
                         </div>
                     </form>
                 </div>

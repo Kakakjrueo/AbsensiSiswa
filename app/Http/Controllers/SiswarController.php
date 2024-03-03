@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Kelaser;
 use App\Models\Siswar;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\SiswarImport;
 
 class SiswarController extends Controller
 {
 
     public function index()
     {
-        $siswars = Siswar::all();
+        $siswars = Siswar::orderBy('kelaser_id', 'ASC')->get();
         $kelasers = Kelaser::all();
         return view('siswar.index', compact('siswars','kelasers'));
     }
@@ -98,5 +100,17 @@ class SiswarController extends Controller
         } catch (\Exception $e) {
             return redirect()->route('siswar.index')->with(['error' => 'Gagal menghapus siswa tersebut karena ada data yang terkait dengan table absensi.']);
         }
+    }
+
+    public function import(Request $request)
+    {
+        $this->validate($request, [
+        'file' =>'required|file|mimes:xlsx,xls'
+        ],[
+            'file.mimes' => 'File harus berupa file excel dengan ekstensi xlsx atau xls'
+        ]);
+      Excel::import(new SiswarImport, $request->file('file'));
+         return redirect()->back()->with(['success' =>'Import berhasil.']);
+
     }
 }

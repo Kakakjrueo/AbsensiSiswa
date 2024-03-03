@@ -15,7 +15,7 @@ class AbsensirController extends Controller
         $siswars = Siswar::all();
         $kelasers = Kelaser::all();
         $users = User::all();
-
+        
         return view('absensir.index',compact('absensirs','siswars','kelasers','users')); 
     }
 

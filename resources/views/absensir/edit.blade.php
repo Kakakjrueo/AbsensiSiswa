@@ -18,7 +18,7 @@
                 @csrf
                 @method('PUT')
                 <div class="row">
-                    <div class="col">
+                    <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="">Keterangan</label>
                             <select name="keterangan" class="choices form-select">
@@ -33,7 +33,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-md-6 col-12">
                         <div class="form-group">
                             <label for="">Guru Pengajar</label>
                             <select name="user_id" class="choices form-select">
@@ -46,6 +46,18 @@
                             @error('user_id')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="">Nama Siswa</label>
+                            <input type="text" class="form-control" value="{{ old('siswar_id', $absensir->siswar->nama)}}" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="">Kelas</label>
+                            <input type="text" class="form-control" value="{{ old('kelaser_id', $absensir->kelaser->namlas)}}" readonly>
                         </div>
                     </div>
 

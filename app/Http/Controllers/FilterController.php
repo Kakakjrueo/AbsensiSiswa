@@ -33,25 +33,26 @@ class FilterController extends Controller
 
     public function FilterRekap(Request $request)
     {
-    $request->validate([
-        'mulai' => 'required',
-        'akhir' => 'required',
-    ]);
-    $user_id = $request->user_id;
-    session()->put('user_id', $user_id);
-    $kelaser_id = $request->kelaser_id;
-    session()->put('kelaser_id', $kelaser_id);
-    $mulai = $request->mulai;
-    $akhir = $request->akhir;
+        $request->validate([
+            'mulai' => 'required',
+            'akhir' => 'required',
+        ]);
 
-    $absensirs = Absensir::where('user_id', $user_id)
-                         ->where('kelaser_id', $kelaser_id)
-                         ->whereDate('created_at', '>=', $mulai)
-                         ->whereDate('created_at', '<=', $akhir)
-                         ->get();
-    $kelasers = Kelaser::all();
-    $users = User::all();
-    return view('absensir.index', compact('absensirs','kelasers','users'));
+        $user_id = $request->user_id;
+        session()->put('user_id', $user_id);
+        $kelaser_id = $request->kelaser_id;
+        session()->put('kelaser_id', $kelaser_id);
+        $mulai = $request->mulai;
+        $akhir = $request->akhir;
+
+        $absensirs = Absensir::where('user_id', $user_id)
+                    ->where('kelaser_id', $kelaser_id)
+                    ->whereDate('created_at', '>=', $mulai)
+                    ->whereDate('created_at', '<=', $akhir)
+                    ->get();
+
+        $users = User::all();
+        $kelasers = Kelaser::all();
+        return view('absensir.index', compact('absensirs', 'kelasers', 'users'));
     }
-
 }

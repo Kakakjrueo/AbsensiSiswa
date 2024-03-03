@@ -17,9 +17,9 @@ return new class extends Migration
             $table->enum('jenkel',['L','P'])->default('P');
             $table->char('nis');
             $table->char('nisn');
+            $table->foreignId('kelaser_id')->references('id')->on('kelasers')->onDelete('cascade');
             $table->timestamps();
-
-            $table->foreignId('kelaser_id')->references('id')->on('kelasers');
+            
         });
     }
 

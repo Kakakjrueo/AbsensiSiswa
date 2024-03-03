@@ -10,42 +10,45 @@
 
 @section('content')
     <div class="card pt-2">
-            <form action="/FilterRekap" method="post">
-                @csrf
-                <div class="row pb-3">
-                    <div class="col-md-2">
-                        <label for="country-floating">Guru Pengajar</label>
-                        <select class="form-select" name="user_id">
-                            @foreach ($users as $user)
-                                <option value="{{ $user->id }}"{{ session('user_id') == $user->id ? 'selected' : '' }}>
-                                    {{ $user->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="country-floating">Pilih Kelas</label>
-                        <select class="form-select" name="kelaser_id">
-                            @foreach ($kelasers as $kelaser)
-                                <option value="{{ $kelaser->id }}"{{ session('kelaser_id') == $kelaser->id ? 'selected' : '' }}>
-                                    {{ $kelaser->namlas }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <label>Mulai</label>
-                        <input type="date" name="mulai" class="form-control" value="{{ old('mulai') ?: request()->input('mulai') }}">
-                    </div>
-                    <div class="col-md-2">
-                        <label>Akhir</label>
-                        <input type="date" name="akhir" class="form-control" value="{{ old('akhir') ?: request()->input('akhir') }}">
-                    </div>
-                    <div class="col-md-2 d-grid">
-                        <button type="submit" class="btn btn-primary mt-4 btn-sm">Tampilkan</button>
-                    </div>
+        <form action="/FilterRekap" method="post">
+            @csrf
+            <div class="row pb-3">
+                @if(auth()->user()->role == 'admin' || auth()->user()->role == 'guru')
+                <div class="col-md-2">
+                    <label for="country-floating">Guru Pengajar</label>
+                    <select class="form-select" name="user_id">
+                        @foreach ($users as $user)
+                        <option value="{{ $user->id }}"{{ session('user_id') == $user->id ? 'selected' : '' }}>
+                            {{ $user->name }}
+                        </option>
+                        @endforeach
+                    </select>
                 </div>
-            </form>
+                @endif
+                <div class="col-md-2">
+                    <label for="country-floating">Pilih Kelas</label>
+                    <select class="form-select" name="kelaser_id">
+                        @foreach ($kelasers as $kelaser)
+                        <option value="{{ $kelaser->id }}"{{ session('kelaser_id') == $kelaser->id ? 'selected' : '' }}>
+                            {{ $kelaser->namlas }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label>Mulai</label>
+                    <input type="date" name="mulai" class="form-control" value="{{ old('mulai') ?: request()->input('mulai') }}">
+                </div>
+                <div class="col-md-2">
+                    <label>Akhir</label>
+                    <input type="date" name="akhir" class="form-control" value="{{ old('akhir') ?: request()->input('akhir') }}">
+                </div>
+                <div class="col-md-2 d-grid">
+                    <button type="submit" class="btn btn-primary mt-4 btn-sm">Tampilkan</button>
+                </div>
+            </div>
+        </form>
+
 
         @if (Session::has('success'))
             <div class="alert alert-success" role="alert">
@@ -59,7 +62,7 @@
         @endif
 
         <div class="card-body px-0 py-0">
-            <div class="table-responsive">
+            <divoo--6z6 -oz6-co5lass="table-responsive">
                 <table class="table table-striped" id="example" >
                     <thead>
                         <tr>

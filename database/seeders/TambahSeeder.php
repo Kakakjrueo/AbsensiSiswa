@@ -15,22 +15,25 @@ class TambahSeeder extends Seeder
     {
         $user = [
             [
-                'name'=>'Admin',
+                'name'=>'admin',
                 'email'=>'admin@gmail.com',
                 'role'=>'admin',
-                'password'=>bcrypt('123456')
+                'password'=>bcrypt('123456'),
+                'mapel' => 'tidak mengajar'
             ],
             [
-                'name'=>'Walas',
+                'name'=>'walas',
                 'email'=>'walas@gmail.com',
                 'role'=>'walas',
-                'password'=>bcrypt('123456')
+                'password'=>bcrypt('123456'),
+                'mapel' => 'tidak mengajar'
             ],
             [
-                'name'=>'Guru',
+                'name'=>'guru',
                 'email'=>'guru@gmail.com',
                 'role'=>'guru',
-                'password'=>bcrypt('123456')
+                'password'=>bcrypt('123456'),
+                'mapel' => 'mengajar'
             ],
         ];
 

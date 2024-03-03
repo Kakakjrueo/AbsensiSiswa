@@ -17,8 +17,11 @@
             <div class="col-12 col-md-6">
                 <div class="card mb-3">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $siswar->nama }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ $siswar->kelaser->namlas }}</h6>
+                        <h5 class="card-title-primary">#{{ $loop->iteration }} {{ $siswar->nama }}</h5>
+                        <strong><hr></strong>
+                        <h6 class="card-subtitle mb-2 text-muted">Nis   :{{ $siswar->nis }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Nisn  :{{ $siswar->nisn }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Kelas :{{ $siswar->kelaser->namlas }}</h6>
                         <form action="{{ route('absensir.store') }}" method="POST">
                             @csrf
                             <input type="hidden" name="siswar_id[]" value="{{ $siswar->id }}">

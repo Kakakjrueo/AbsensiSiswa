@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('/user', UserController::class)->middleware('level:admin');
     Route::resource('/kelaser', KelaserController::class)->middleware('level:admin');
     Route::resource('/siswar', SiswarController::class)->middleware('level:admin');
+    Route::post('/siswa-import', [SiswarController::class, 'import']);
  
     Route::resource('/absensir', AbsensirController::class);
     Route::post('/filterByKelas', [FilterController::class, 'filterByKelas']);
